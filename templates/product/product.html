@@ -1,0 +1,40 @@
+
+
+{% extends "base/base.html"%}
+{%  block start %}
+<div class="sproduct container mt-5 pb-5">
+    <div class="row sproduct-row">     
+        <div class=" col-12 col-lg-6 d-flex justify-content-center mb-lg-auto " id="spimage">
+
+            <img src="/media/{{product.product_images.first.image}}" alt="image" class="img-fluid b-photo">
+           </div>
+           <div class=" col-10 col-lg-6 sproduct-details mt-5 mt-lg-4 mx-5 mx-lg-0">
+             <h3 id="spcategory">
+              {% for cat in product.category.all %}
+              {{ cat.category_name }}{% if not forloop.last %}, {% endif %}
+          {% empty %}
+              No category assigned
+          {% endfor %}
+             </h3>
+             <h2 id="spname">{{product.product_name}}
+             </h2>
+             <P id="spprice">Rs {{product.price}}
+             </P>
+             <p id="sprating">
+              {{product.rating}} <i class="fas fa-star" style="color:brown;"></i>
+             </p>
+             <div class="my-3">
+               <label for="quantity" class="form-label">Quantity:</label>
+               <input type="number" id="quantity" class="form-control w-50" value="1" min="1">
+             </div>
+             <button class="btn btn-success w-50"><a href="{% url 'add_to_cart' product.uid %}" style="text-decoration: none; color:white;">Add to Cart</a></button>
+             
+             <hr>
+             <h5>Plant Details</h5>
+             <p class="paragraph" id="spdetail">
+             {{product.product_desription}}
+             </p>
+           </div>
+    </div>
+  </div>
+{% endblock %}

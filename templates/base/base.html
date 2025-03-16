@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Website title - bootstrap html template</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!-- custom css -->
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg border-0">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.png' %}" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Home Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active {% endif %}" aria-current="page" href="/">Home</a>
+                    </li>
+                    <!-- Products Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/products/products/' %} active {% endif %}" href="{% url 'products' %}">Products</a>
+                    </li>
+                    <!-- About Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == 'about/' %} active {% endif %}" href="about.html">About</a>
+                    </li>
+                    <!-- Contact Us Page Link -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '#contactus' %} active {% endif %}" href=" #contactus">Contact us</a>
+                    </li>
+                </ul>
+
+                <!-- Search Bar
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </form> -->
+
+                <!-- Cart and Profile Icons -->
+                <div class="d-flex">
+                    <div class="position-relative d-inline-block me-3">
+                        <a href="{% url 'cart' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                        </a>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{request.user.profile.get_cart_count}}
+                            <span class="visually-hidden">items in cart</span>
+                        </span>
+                    </div>
+                    
+                    <a href="/accounts/login/" class="btn btn-outline-secondary">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block start %}
+
+    {% endblock %}
+        
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

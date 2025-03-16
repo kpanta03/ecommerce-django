@@ -1,0 +1,72 @@
+
+<!-- this is a products cart -->
+<div class="page2 page3" >
+    <h1 class="heading ">Our products</h1>
+    <div class="my-5 container d-flex justify-content-evenly align-items-center">
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button class="btn btn-dropdown dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item indoor-btn" href="?category=indoor-plant">Indoor</a></li>
+          <li><a class="dropdown-item outdoor-btn" href="?category=outdoor-plant">Outdoor</a></li>
+          <li><a class="dropdown-item flower-btn" href="?category=flower-plant">Flowers</a></li>
+        </ul>
+      </div>
+
+      <!-- Buttons -->
+      <div class="center-btn d-none d-lg-flex">
+        <a href="{% if products == 'index' %}{% url 'index' %}{% else %}{% url 'products' %}{% endif %}" class="btn btn-outline-success mx-1 all-btn">All</a>
+        <a href="?filter=sale" class="btn btn-outline-success mx-1 sale-btn">Sale</a>
+        <a href="?filter=new_arrival" class="btn btn-outline-success mx-1 new-arrival-btn">New arrival</a>
+        <a href="?filter=best_seller" class="btn btn-outline-success mx-1 best-seller-btn">Best seller</a>
+    </div>
+    
+
+      <!-- Search Form -->
+      <form class="d-flex " role="search" method="GET" action="{% url 'index' %}">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search"
+        value="{{ request.GET.search }}">
+        <button class="btn btn-outline-success" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+<div class="products-bg" >
+    <div class="products container container-lg-fluid" >
+      <div class="row products-row">
+        {% for product in products %}
+        <div class="col-6 col-md-4 col-lg-3 product-item">
+          <div class="card">
+            <img src="/media/{{product.product_images.first.image}}" class="card-img-top plants" alt="name">
+            <div class="card-body text-center" style="padding: 0.5rem;">
+              <h5 class="card-title" style="margin: 0.5rem 0;">{{product.product_name}}</h5>
+
+              {% if product.discount > 0 %}
+              <h6 class="card-subtitle mb-2 text-body-secondary" style="margin: 0.25rem 0;">
+                  <del>Rs {{product.price }}</del> - {{product.discount }}%
+              </h6>
+              <h6 class="card-subtitle mb-2 text-body-secondary" style="margin: 0.25rem 0;">
+                  Rs {{product.discounted_price }}
+              </h6>
+          {% else %}
+              <h6 class="card-subtitle mb-2 text-body-secondary" style="margin: 0.25rem 0;">
+                  Rs {{ product.price }}
+              </h6>
+          {% endif %}
+              <div class="btn-container" style="display: flex; gap: 5px; justify-content: center; margin-top: 0.5rem;">
+                <button class="btn btn-success btn-sm products-btn buy-now"><a href="{% url 'get_product' product.slug %}" style="text-decoration: none; color: white;">Buy Now</a></button>
+                <button class="btn btn-outline-success btn-sm products-btn"><a href="{% url 'add_to_cart' product.uid %}" style="text-decoration: none; color: green;">Add to Cart</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+  {% endfor %}
+
+</div>  
+</div>
+
+      </div>
+    </div>

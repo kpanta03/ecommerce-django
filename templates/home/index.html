@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{%  block start %}
+<!-- page1 -->
+<div class="page1"> 
+    <!-- navigation down -->
+    <div class="container-fluid nav-down">
+      <div class="row">
+        <!-- <div class="col-4  d-none d-lg-block"> -->
+        <div class="col-4 col-md-5 col-lg-4 d-none d-md-block">
+          <img src="{% static 'images/left.png' %}" class="img-fluid left-leaf" alt="Responsive image">
+        </div>
+        <div
+          class="col-12 col-sm-10 col-md-6 col-lg-5 d-flex flex-column justify-content-start align-items-center align-items-lg-start "
+          style="margin: 4rem auto ;">
+          <h1 class="page1-heading heading"><span style="color: darkgreen;">Green </span> your space</h1>
+          <h1 class="page1-heading heading" style="margin-left: 4rem;">Grow your peace</h1>
+
+          <p class="page1-paragraph paragraph" style="margin-top: 1rem;">Lorem ipsum, dolor sit amet consectetur
+            adipisicing elit. Porro ullam quo commodi natus in rerum labore a, cumque, eaque voluptate aut! Reiciendis
+            suscipit voluptatem commodi iusto!</p>
+          <a href="/products/products" style="margin-left: auto; margin-right: auto;"><button class="button" style=" margin-top:1rem; margin-left: auto;margin-right: auto; ">Explore
+            Plants</button></a>
+        </div>
+        <div class="col-3 d-none d-lg-flex justify-content-end align-items-center">
+          <img src="{% static 'images/right.png' %}" class="img-fluid right-leaf" alt="Responsive image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- page2 -->
+ 
+{% include 'product/products.html' %}
+<a href="/products/products" class="text-decoration-none text-success d-flex justify-content-end me-4 align-items-start seemore mt-3">
+  See More  <i class="fa-solid fa-arrow-right ms-3 mt-2" style="font-size: 1rem;"></i>
+</a>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base/base.html" %}
+{% block start %}
+
+<main class="cart-container container my-5">
+    <h1 class="text-center mb-5">Your Shopping Cart</h1>
+    {% if cart and cart.cart_items.all %}
+
+    <!-- Cart Table -->
+    <div class="table-responsive">
+        <table class="cart-table table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for cart_item in cart.cart_items.all %}
+                <tr>
+                    <td>
+                        {% if cart_item.product.product_images.all %}
+                        <img src="{{ cart_item.product.product_images.first.image.url }}" alt="{{ cart_item.product.product_name }}" class="product-img">
+                        {% endif %}
+                        {{ cart_item.product.product_name }}
+                    </td>
+                    <td>Rs {{ cart_item.product.price }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'update_cart' cart_item.uid %}">
+                            {% csrf_token %}
+                            <button type="submit" name="action" value="decrease" class="quantity-btn minus">-</button>
+                            <input type="number" value="{{ cart_item.quantity }}" name="quantity" class="quantity-input" min="1" readonly>
+                            <button type="submit" name="action" value="increase" class="quantity-btn plus">+</button>
+                        </form>
+                        
+                    </td>
+                    <td>Rs {{ cart_item.get_product_price }}</td>
+                    <td>
+                        <a href="{% url 'remove_cart' cart_item.uid %}" class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Cart Summary -->
+    
+<div class="cart-summary">
+    <p>Subtotal: <span id="cart-subtotal">Rs {{ cart.get_cart_total }}</span></p>
+    <p>Shipping: <span id="shipping">Rs 10</span></p>
+    <p>Total: <span id="total">Rs {{ cart.get_cart_total|add:10 }}</span></p> <!-- Add Rs 10 for shipping -->
+    <a class="checkout-btn">Proceed to Checkout</a>
+    <a href="{% url 'products' %}" class="shopping-btn">Continue Shopping</a>
+</div>
+
+
+    {% else %}
+    <h3 class="text-center">Your cart is empty!</h3>
+    <div class="text-center mt-4">
+        <a href="{% url 'products' %}" class="shopping-btn">Browse Products</a>
+    </div>
+    {% endif %}
+    
+</main>
+
+{% endblock %}
+
