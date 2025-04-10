@@ -25,9 +25,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR , 'templates')#for templates
 SECRET_KEY = 'django-insecure-s6pmkq2@uv!4ovn70h$ju!rkc$w86&g*7vc8+!o@g9l8bg2f3z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['your-app-name.onrender.com']
 
 
 # Application definition
@@ -39,18 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # for deployment
+    'whitenoise.runserver_nostatic',
+
 
     # apps
     'products',
     'accounts',
     'home',
-    'productpage'
+    'productpage',
+    'contact',
     
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',#for deployment
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,6 +148,32 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# settings.py
+
+# eSewa sandbox (UAT) endpoints
+ESEWA_BASE_URL     = "https://rc-epay.esewa.com.np/api/epay/main/v2/form"  
+ESEWA_VERIFY_URL   = "https://rc.esewa.com.np/api/epay/transaction/status/"  
+
+ESEWA_MERCHANT_ID  = "EPAYTEST"
+ESEWA_SECRET_KEY   = "8gBm/:&EnhH.1/q"
+
+ESEWA_SUCCESS_URL  = "http://localhost:8000/accounts/esewa-confirm/"
+ESEWA_FAIL_URL     = "http://localhost:8000/accounts/esewa-fail/"
+
+
+# for deployment
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -153,4 +184,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_USE_TLS = True
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = 'pantakritika9849@gmail.com'
-# EMAIL_HOST_PASSWORD = 'zyan fan forever'
+# EMAIL_HOST_PASSWORD = 'password'

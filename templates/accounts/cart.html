@@ -55,7 +55,7 @@
     <p>Subtotal: <span id="cart-subtotal">Rs {{ cart.get_cart_total }}</span></p>
     <p>Shipping: <span id="shipping">Rs 10</span></p>
     <p>Total: <span id="total">Rs {{ cart.get_cart_total|add:10 }}</span></p> <!-- Add Rs 10 for shipping -->
-    <a class="checkout-btn">Proceed to Checkout</a>
+    <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
     <a href="{% url 'products' %}" class="shopping-btn">Continue Shopping</a>
 </div>
 
@@ -70,4 +70,6 @@
 </main>
 
 {% endblock %}
+
+
 

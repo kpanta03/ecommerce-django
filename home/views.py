@@ -29,3 +29,6 @@ def index(request):
     products = products.order_by('?')[:8]
 
     return render(request, "home/index.html", context={'products': products})
+
+
+

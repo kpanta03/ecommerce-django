@@ -1,0 +1,8 @@
+{% extends "base/base.html" %}
+{% block start %}
+<main class="container my-5 text-center">
+  <h2>Payment Failed or Cancelled</h2>
+  <p>Something went wrong with your payment. Please try again.</p>
+  <a href="{% url 'cart' %}" class="btn btn-warning">Back to Cart</a>
+</main>
+{% endblock %}

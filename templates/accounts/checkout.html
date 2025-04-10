@@ -1,0 +1,101 @@
+{% extends "base/base.html" %}
+{% block start %}
+
+<style>
+    .checkout-container {
+    background-color: #f0fff4;
+    padding: 2rem 0;
+    font-family: 'Poppins', sans-serif;
+    color: #2d3a1a;
+  }
+
+  .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "🌿";
+  }
+</style>
+
+
+<div class="container my-5">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white px-0">
+      <li class="breadcrumb-item"><a href="{% url 'index' %}" style="color:brown;">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'cart' %}" style="color:brown;">Cart</a></li>
+      <li class="breadcrumb-item active" aria-current="page" >Checkout</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <!-- Payment Method Panel -->
+    <div class="col-lg-8 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-0">
+          <h5 class="mb-0">Payment Method</h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted">You will be redirected to eSewa’s secure gateway to complete your payment.</p>
+
+          <form action="{{ esewa_url }}" method="POST" class="mt-4">
+            <!-- Hidden fields required by eSewa v2 -->
+            <input name="amount"                   type="hidden" value="{{ amount }}">
+            <input name="tax_amount"               type="hidden" value="{{ tax_amount }}">
+            <input name="product_service_charge"   type="hidden" value="{{ product_service_charge }}">
+            <input name="product_delivery_charge"  type="hidden" value="{{ product_delivery_charge }}">
+            <input name="total_amount"             type="hidden" value="{{ total_amount }}">
+            <input name="transaction_uuid"         type="hidden" value="{{ transaction_uuid }}">
+            <input name="product_code"             type="hidden" value="{{ product_code }}">
+            <input name="success_url"              type="hidden" value="{{ success_url }}">
+            <input name="failure_url"              type="hidden" value="{{ failure_url }}">
+            <input name="signed_field_names"       type="hidden" value="{{ signed_field_names }}">
+            <input name="signature"                type="hidden" value="{{ signature }}">
+
+            <button type="submit" class="btn btn-success btn-lg btn-block">
+              <i class="fas fa-credit-card mr-2"></i> Pay with eSewa
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary Sidebar -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-0">
+          <h5 class="mb-0">Order Summary</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-4">
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span>Subtotal</span>
+              <strong>Rs {{ amount }}</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span>Tax</span>
+              <strong>Rs {{ tax_amount }}</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span>Service Charge</span>
+              <strong>Rs {{ product_service_charge }}</strong>
+            </li>
+            <li class="d-flex justify-content-between py-2 border-bottom">
+              <span>Shipping</span>
+              <strong>Rs {{ product_delivery_charge }}</strong>
+            </li>
+          </ul>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5>Total</h5>
+            <h5>Rs {{ total_amount }}</h5>
+          </div>
+          <p class="text-muted small">By clicking “Pay with eSewa” you agree to our <a href="#" style="color:brown;">Terms &amp; Conditions</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

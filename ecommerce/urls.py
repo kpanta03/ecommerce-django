@@ -27,6 +27,8 @@ urlpatterns = [
     path('accounts/' , include('accounts.urls') ),
     path('products/' , include('productpage.urls') ),
     path('admin/', admin.site.urls),
+    path('contact/', include('contact.urls')),
+    path('about/', include('about.urls')),
 ]
 # for static media to render
 if settings.DEBUG:

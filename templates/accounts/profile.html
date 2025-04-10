@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+{% block start %}
+
+<div class="container mt-5 d-flex justify-content-center align-items-center">
+    <div class="card shadow-lg" style="max-width: 500px; width: 100%;">
+        <div class="card-header text-center bg-success text-white">
+            <h3 class="mb-0">Welcome, {{ request.user.first_name|default:"User" }} 👋</h3>
+        </div>
+        <div class="card-body">
+            <p class="text-muted text-center mb-4">Here's your profile information:</p>
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Full Name:</strong> {{ request.user.first_name }} {{ request.user.last_name }}</li>
+                <li class="list-group-item"><strong>Joined:</strong> {{ request.user.date_joined|date:"F j, Y" }}</li>
+            </ul>
+
+            <div class="d-flex justify-content-center">
+            <div class="mt-4 me-3 d-flex justify-content-center">
+                <a href="{% url 'logout' %}" class="btn btn-danger w-100">Logout</a>
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+                <a href="{% url 'cart' %}" class="btn btn-danger w-100">My cart</a>
+            </div>
+        </div>
+
+        </div>
+        <div class="card-footer text-center text-muted">
+            You can customize your profile in future updates.
+        </div>
+    </div>
+</div>
+
+{% endblock %}

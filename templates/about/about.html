@@ -1,0 +1,163 @@
+
+{% extends "base/base.html" %}
+{% load static %}
+
+{%  block start %}
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Great Vibes', cursive;
+                   }
+        .navbar {
+          background-color:rgba(255, 255, 255, 0.952);
+
+                   }
+      
+      .first-page-image{
+        transform: scaleX(-1);
+       
+      }
+      .first-page{
+        margin-top:-5rem;
+      }
+      
+      .story {
+      text-align: center;
+      font-size: 1.4rem;
+      /* font-weight: 200; */
+      line-height: 1.8;
+      color:darkgreen;
+      position: relative;
+      display: inline-block;
+      padding: 20px;
+      
+
+      /* 3D effect using layers */
+      /* text-shadow: 
+         1px 1px 0 darkgreen,  
+        4px 4px 5px rgba(0, 0, 0, 0.3),
+        5px 5px 10px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(to right, #66bb6a, #43a047);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.2s ease-in-out; */
+    }
+
+    /* Hover effect */
+    .story:hover {
+      transform: translateY(-5px);
+    }  
+    </style>
+
+
+<div class="container first-page" > 
+<div class="row">
+  <div class="col-md-6 first-page-image" >
+    <img src="{% static 'images/first-page.gif' %}" alt="flowers" class="img-fluid">
+  </div>
+
+  <div class="col-md-6 d-flex justify-center align-items-center">
+    <h1 >Our Journey Towards Garden Glow</h1>
+  </div>
+  
+
+</div> 
+  
+</div>
+
+<h2 style="text-align: center; margin:4rem 0rem;">Her Garden, His Dream</h2>
+
+<div class="container second-page" style="background-color:#f0f8f0;">
+    <div class="row">
+      <div class="col-lg-7" style="text-align: center; margin: auto;">
+      <p class="text-center story" style="margin: auto;">She always believed there was magic in the soil. As a little girl, she loved wandering through the woods near her home.</p>
+        <p class="text-center story"> The sunlight would shine through the trees, and tiny wildflowers would bloom all around. To her, it felt like the plants were alive, sharing secrets only she could understand.</p>  
+   </div>
+
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/second-page.png' %}" alt="" class="img-fluid">
+   </div>
+</div>
+
+
+  </div>
+
+  <div class="container third-page">
+    <div class="row">
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/third-page.png' %}" alt="" class="first-page-image img-fluid">
+   </div>
+   <div class="col-lg-7" style="text-align: center; margin: auto;">
+    <p class="text-center story" style="margin: auto;">Once, she found a small, weak sapling under a fallen branch. It looked like it might not survive, but she saw hope in it.</p>
+    <p class="text-center story" style="margin: auto;">She took it home and planted it in the softest soil she could find. Every day, she cared for it—watering it, talking to it, and watching it grow. Slowly, the sapling grew stronger, stretching its leaves toward the sun.</p>
+
+       
+ </div>
+
+</div>
+
+
+  </div>
+
+  <div class="container fourth-page" style="background-color:#F0F8F0;">
+    <div class="row">
+      <div class="col-lg-7" style="text-align: center; margin: auto;">
+      <p class="text-center story" style="margin: auto;">That little sapling changed her life. It showed her that even the smallest seeds could grow into something amazing with love and care. From then on, she fell in love with plants and found her greatest happiness in taking care of them.</p>
+   </div>
+
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/fourth-page.png' %}" alt="" class="first-page-image img-fluid">
+   </div>
+</div>
+
+
+  </div>
+
+  <div class="container fifth-page">
+    <div class="row">
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/fifth-page.gif' %}" alt="" class="first-page-image img-fluid">
+   </div>
+   <div class="col-lg-7" style="text-align: center; margin: auto;">
+    <p class="text-center story" style="margin: auto;">She dreamed of creating a place where others could feel the same magic she did. A place where plants weren’t just bought and sold but loved and cherished. She wanted to show people the beauty of nature and the life in every leaf and petal.</p>
+ </div>
+
+</div>
+
+
+  </div>
+
+  <div class="container sixth-page" style="background-color:#F0F8F0;">
+    <div class="row">
+      <div class="col-lg-7" style="text-align: center; margin: auto;">
+      <p class="text-center story" style="margin: auto;">Though she’s no longer here, her dream lives on in this nursery. Every plant here carries her spirit, grown with the same care and love she gave that first sapling. This nursery isn’t just a business—it’s her legacy, her gift to the world.</p>
+   </div>
+
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/sixth-page.png' %}" alt="" class="first-page-image img-fluid">
+   </div>
+</div>
+
+
+  </div>
+
+  <div class="container seventh-page"  >
+    <div class="row">
+   <div class="col-lg-5 text-center story" >
+    <img src="{% static 'images/seventh-page.png' %}" alt="" class=" img-fluid">
+   </div>
+   <div class="col-lg-7" style="text-align: center; margin: auto;">
+    <h3 style="margin: auto;">Welcome to her world of green, where every plant has a purpose, and every leaf tells a story.
+    </h3>
+    <p style="text-align: end; margin-top: 1rem;">Forever yours,</p>
+    <p style="text-align: end; margin-top: -1rem;">Kuka</p>
+
+ </div>
+
+</div>
+  </div>
+
+  {% endblock %}
